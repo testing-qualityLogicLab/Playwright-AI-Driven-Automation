@@ -92,4 +92,32 @@ export class ProductPage {
   async verifyCartBadge(expectedText: string) {
     await expect(this.getCartBadge(expectedText)).toBeVisible();
   }
+
+  /**
+   * Get the wishlist button (heart icon)
+   */
+  getWishlistButton() {
+    return this.page.locator('button[title="Add to Wish List"]');
+  }
+
+  /**
+   * Click the wishlist button
+   */
+  async clickWishlistButton() {
+    await this.getWishlistButton().click();
+  }
+
+  /**
+   * Get the success alert after adding to wishlist
+   */
+  getWishlistSuccessAlert() {
+    return this.page.locator('[class*="alert"]').filter({ hasText: 'Success: You have added' });
+  }
+
+  /**
+   * Verify wishlist success alert is visible
+   */
+  async verifyWishlistSuccessAlert() {
+    await expect(this.getWishlistSuccessAlert()).toBeVisible();
+  }
 }
